@@ -1,0 +1,221 @@
+<<Travel.html>>
+<html>
+
+<Head>
+ 
+<style>
+/* Style for my webpage */
+
+	 #header {
+		position: absolute;
+		top: 0;
+		left:0;
+		right:0;
+		width: 100%;
+		height: 20%;
+		background:  #b3b3b3;
+		font-size: 30px;
+		}
+		
+	#sidebar {
+	    position: absolute;
+		top: 20%;
+		left:0;
+		width: 16%;
+		height: 100%;
+		background:#e69500;
+		font-size: 15px;
+		}
+		
+	  #content {
+	    position: absolute;
+		top: 20%;
+		left:200;
+		width: 90%;
+		height: 100%;
+		background: #e6e6e6;
+		font-size: 18px;
+		font-family: Arial, Helvetica, sans-serif;
+		
+		#footer {
+	    position: fixed;
+		bottom:0%;
+		left:0;
+		width: 100%;
+		height: 5%;
+		background: #b3b3b3;
+		font-size: 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align:center;
+		}
+		
+		</style>
+   
+/* Style for my image scroller */
+   <style type="text/css">
+    #scroller {
+        position: relative;
+    }
+    #scroller .innerScrollArea {
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+    #scroller ul {
+        padding: 0;
+        margin: 0;
+        position: relative;
+    }
+    #scroller li {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        position: absolute;
+    }
+</style>
+ 
+ /* style for my hoverable sidebar navigation */
+<style>
+html
+
+	  ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 250px;
+  background-color: #e6e6e6;;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color on hover */ 
+li a:hover {
+  background-color: #555;
+  color: white;
+  </style>
+  
+  
+<!--Header Content-->
+  <div id ="header">
+  <h1 Align = "center" style = "color:white"><img src = "eg.jpg" width = "100" height = "100"><i>Eilish Galvins Consulting Services</i><img src = "eg.jpg" width = "100" height = "100"></h1>
+  </div>
+</Head>
+
+
+<!--Body Content-->
+<Body>
+   <div id = "content">
+   <h1 Align = "center">Travel</h1>
+
+<!--Scroller Content-->
+<div id="scroller" style="width: 550px; height: 400px; margin: 0 auto;">
+    <div class="innerScrollArea">
+        <ul>
+            <!-- Define photos here -->
+            <li><img src="salou.jpg" width="600" height="400" /></li>
+            <li><img src="Albufeira.jpg" width="600" height="400" /></li>
+			<li><img src="edin.jpg" width="600" height="400" /></li>
+		
+			
+   
+        </ul>
+    </div>
+</div>
+
+
+<!--Defining the javascript-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script type="text/javascript">
+	   
+	       $(function(){
+        var scroller = $('#scroller div.innerScrollArea');
+        var scrollerContent = scroller.children('ul');
+        scrollerContent.children().clone().appendTo(scrollerContent);
+        var curX = 0;
+        scrollerContent.children().each(function(){
+            var $this = $(this);
+            $this.css('left', curX);
+            curX += $this.outerWidth(true);
+        });
+        var fullW = curX / 2;
+        var viewportW = scroller.width();
+
+
+        // Scrolling speed management
+        var controller = {curSpeed:0, fullSpeed:2};
+        var $controller = $(controller);
+        var tweenToNewSpeed = function(newSpeed, duration)
+        {
+            if (duration === undefined)
+                duration = 600;
+            $controller.stop(true).animate({curSpeed:newSpeed}, duration);
+        };
+
+        // Pause on hover
+        scroller.hover(function(){
+            tweenToNewSpeed(0);
+        }, function(){
+            tweenToNewSpeed(controller.fullSpeed);
+        });
+
+        // Scrolling management; start the automatical scrolling
+        var doScroll = function()
+        {
+            var curX = scroller.scrollLeft();
+            var newX = curX + controller.curSpeed;
+            if (newX > fullW*2 - viewportW)
+                newX -= fullW;
+            scroller.scrollLeft(newX);
+        };
+        setInterval(doScroll, 20);
+		        tweenToNewSpeed(controller.fullSpeed);
+    });
+
+
+</script>
+
+<!--Descriptive paragraph-->
+<p Font = "16" Align = "Center">
+ I love to travel, it helps to open my mind.
+ <br>I realize that there's no one way to live life. </br>
+ By being exposed to new places, people and cultures, I will develop a wider world view.
+<br>Traveling helps me get out of my comfort zone.</br>
+ It has always been my dream to visit every country on this earth at least once.
+ <br>I really hope that I can find free time and fulfil my dream to travel all around the world in the future.</br>
+ I just love to travel because it makes me realize that life is so beautiful 
+ and there is so much to admire and treasure in this world.
+ <br>It also gives me chance to explore new places and learn different cultures and traditions.</br>
+ Furthermore, it does not only increase my knowledge
+ <br>but also help me feel relax  and forget all the problems that I have. </br>
+ Each travel experience teaches me something new and made me become a better person.
+
+</div>
+
+<!--Sidebar Content-->
+<div id ="sidebar">
+    <ul>
+        <li><a href ="index.html">Home</a></li>
+        <li><a href = "bootstrap/index.html">CV</a>
+       <li><a href="sport.html">Sport</a></li>
+       <li><a href="Research.html">About Consultancy</a></li>
+       <li><a href = "Ebus1.html">Services</a></li>
+  
+</ul>
+</div>
+
+<!--Footer Content-->
+  <div id = "footer">
+  <p>CopyRight by Eilish Galvin 119393221</p>
+
+</div>
+</Body>
+
+</html>

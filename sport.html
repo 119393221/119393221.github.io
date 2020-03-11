@@ -1,0 +1,213 @@
+<<Practice.html>>
+<html>
+<Head>
+
+<!--Style layout for my page-->
+<style>
+	 #header {
+		position: absolute;
+		top: 0;
+		left:0;
+		right:0;
+		width: 100%;
+		height: 20%;
+		background:  #b3b3b3;
+		font-size: 30px;
+		}
+		
+	#sidebar {
+	    position: absolute;
+		top: 20%;
+		left:0;
+		width: 16%;
+		height: 180%;
+		background:#e69500;
+		font-size: 15px;
+		}
+		
+	  #content {
+	    position: absolute;
+		top: 20%;
+		left:200;
+		width: 90%;
+		height: 180%;
+		background: #e6e6e6;
+		font-size: 18px;
+		font-family:  Arial, Helvetica, sans-serif;
+		
+	    #footer {
+	    position: fixed;
+		bottom:0%;
+		left:0;
+		width: 100%;
+		height: 5%;
+		background: #b3b3b3;
+		font-size: 15px;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align:center;
+		}
+		
+		</style>
+   
+   /* Style for my Image scroller */
+   <style type="text/css">
+    #scroller {
+        position: relative;
+    }
+    #scroller .innerScrollArea {
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
+    #scroller ul {
+        padding: 0;
+        margin: 0;
+        position: relative;
+    }
+    #scroller li {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        position: absolute;
+    }
+</style>
+
+/* header content /*
+<div id = "header">
+<h1 Align = "center" style = "color:white"><img src = "eg.jpg" width = "100" height = "100"><i>Eilish Galvins Consulting Services</i><img src = "eg.jpg" width = "100" height = "100"></h1>
+</div>
+
+/* style for my sidebar hover */
+<style>
+html
+
+	  ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 250px;
+  background-color: #e6e6e6;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color on hover */ 
+li a:hover {
+  background-color: #555;
+  color: white;
+  </style>
+
+</Head>
+
+<!--Body Content-->
+<Body>
+<div id = "content">
+<h2 Align = "center">Sport</h2>
+
+<!--Defining the images that are in the scroller-->
+<div id="scroller" style="width: 550px; height: 400px; margin: 0 auto;">
+    <div class="innerScrollArea">
+        <ul>
+            <!-- Define photos here -->
+            <li><img src="1.jpg" width="600" height="400" /></li>
+            <li><img src="3.jpg" width="600" height="400" /></li>
+			<li><img src="4.jpg" width="600" height="400" /></li>
+			<li><img src="5.jpg" width="600" height="400" /></li>
+			
+			
+   
+        </ul>
+    </div>
+</div>
+
+<!--Defining the javascript for the Image Scroller-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script type="text/javascript">
+	   
+	       $(function(){
+        var scroller = $('#scroller div.innerScrollArea');
+        var scrollerContent = scroller.children('ul');
+        scrollerContent.children().clone().appendTo(scrollerContent);
+        var curX = 0;
+        scrollerContent.children().each(function(){
+            var $this = $(this);
+            $this.css('left', curX);
+            curX += $this.outerWidth(true);
+        });
+        var fullW = curX / 2;
+        var viewportW = scroller.width();
+
+
+        // Scrolling speed management
+        var controller = {curSpeed:0, fullSpeed:2};
+        var $controller = $(controller);
+        var tweenToNewSpeed = function(newSpeed, duration)
+        {
+            if (duration === undefined)
+                duration = 600;
+            $controller.stop(true).animate({curSpeed:newSpeed}, duration);
+        };
+
+        // Pause on hover
+        scroller.hover(function(){
+            tweenToNewSpeed(0);
+        }, function(){
+            tweenToNewSpeed(controller.fullSpeed);
+        });
+
+        // Scrolling management; start the automatical scrolling
+        var doScroll = function()
+        {
+            var curX = scroller.scrollLeft();
+            var newX = curX + controller.curSpeed;
+            if (newX > fullW*2 - viewportW)
+                newX -= fullW;
+            scroller.scrollLeft(newX);
+        };
+        setInterval(doScroll, 20);
+		        tweenToNewSpeed(controller.fullSpeed);
+    });
+
+
+</script>
+
+
+<!--My descriptive paragraph-->
+   <p Font = "30" Align = "Center">
+      I have always played sports and enjoy the game, the friendships made, and the energy.
+     <br>I have participated in numerous sports </br>
+     including soccer, basketball, football, camogie, and swimming. 
+     <br>I competed in championships for both camogie and football.</br>
+     I've volunteered at Summer Camps where
+    <br> I have taught kids how to improve their Gaelic sport skills.</br> 
+    I enjoy sport and competition at any level. 
+    <br> The excitement in participating in Championship sports never seems to disappear.</br>
+</div>
+
+<!--SideBar content-->
+<div id = "sidebar">
+<ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href = "bootstrap/index.html">CV</a>
+  <li><a href ="travel.html">Travel</a></li>
+  <li><a href="Research.html">About Consultancy</a></li>
+  <li><a href ="Ebus1.html">Services</a></li>
+ </ul>
+ 
+ </div>
+ 
+<!--Footer Content-->
+ <div id = "footer">
+ <p>CopyRight by Eilish Galvin 119393221</p>
+ </div>
+
+</Body>
+</html>
